@@ -1,5 +1,5 @@
 import styles from './HomePageView.module.scss';
-import { Slogan } from '../components/Slogan/Slogan';
+import { Content } from '../components/Content/Content';
 import { Logo } from '../components/Logo/Logo';
 import { MainBtn } from '../components/MainBtn/MainBtn';
 import { FeatureList } from '../components/FeatureList/FeatureList';
@@ -9,12 +9,7 @@ export const HomePage = () => {
         <div className={styles.wrapper}>
             <main>
                 <Logo/>
-                <Slogan/>
-
-                <section className="mainBtns">
-                    <MainBtn text='ZALOGUJ' dark/>
-                    <MainBtn text='ZAREJESTRUJ'/>
-                </section>
+                <Content/>
             </main>
 
             <footer>
