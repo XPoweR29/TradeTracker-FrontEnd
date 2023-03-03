@@ -1,10 +1,8 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { HomePage } from "./views/HomePageView"
 
 export const App = () => {
 
   return <>
-    <h1>Hello Trade-Tracker!</h1>
+    <HomePage/>
   </>
 }
