@@ -1,7 +1,6 @@
 import styles from './HomePageView.module.scss';
 import { Content } from '../components/Content/Content';
 import { Logo } from '../components/Logo/Logo';
-import { MainBtn } from '../components/MainBtn/MainBtn';
 import { FeatureList } from '../components/FeatureList/FeatureList';
 
 export const HomePage = () => {
