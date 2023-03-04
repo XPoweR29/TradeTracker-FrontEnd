@@ -1,7 +1,7 @@
 import styles from './HomePageView.module.scss';
-import { Content } from '../components/Content/Content';
-import { Logo } from '../components/Logo/Logo';
-import { FeatureList } from '../components/FeatureList/FeatureList';
+import { Content } from '../components/HomePage/Content/Content';
+import { Logo } from '../components/HomePage/Logo/Logo';
+import { FeatureList } from '../components/HomePage/FeatureList/FeatureList';
 
 export const HomePage = () => {
     return <>

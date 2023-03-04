@@ -1,4 +1,4 @@
-import { MainBtn } from '../MainBtn/MainBtn';
+import { MainBtn } from '../../Common/MainBtn/MainBtn';
 import styles from './Content.module.scss';
 
 export const Content = () => {
