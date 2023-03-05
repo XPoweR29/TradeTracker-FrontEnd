@@ -5,7 +5,21 @@ import styles from './Content.module.scss';
 
 export const Content = () => {
 
-    const {setShowLoginForm} = useContext(HomePageContext)!;
+    const {setShowLoginForm, setShowRegisterForm} = useContext(HomePageContext)!;
+
+    const showForm = (set: 'login' | 'register') => {
+        switch (set) {
+            case 'login':
+                setShowLoginForm(true);
+                setShowRegisterForm(false);
+                break;
+            
+            case 'register':
+                setShowLoginForm(false);
+                setShowRegisterForm(true);
+                break;
+        }
+    }
 
     return <>
         <div className={styles.content}>
@@ -17,8 +31,8 @@ export const Content = () => {
             
 
             <section className={styles.mainBtns}>
-                <MainBtn text='ZALOGUJ' dark onClick={()=>setShowLoginForm(true)}/>
-                <MainBtn text='ZAREJESTRUJ'/>
+                <MainBtn text='ZALOGUJ' dark onClick={()=>showForm('login')}/>
+                <MainBtn text='REJESTRACJA' onClick={()=>showForm('register')}/>
             </section>
 
         </div>

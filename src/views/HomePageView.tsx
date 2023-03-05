@@ -5,17 +5,20 @@ import { FeatureList } from '../components/HomePage/FeatureList/FeatureList';
 import { LoginForm } from '../components/HomePage/LoginForm/LoginForm';
 import { HomePageContext } from '../components/Common/Contexts/Contexts';
 import { useState } from 'react';
+import { RegisterForm } from '../components/HomePage/RegisterForm/RegisterForm';
 
 export const HomePage = () => {
     const [showLoginForm, setShowLoginForm] = useState(false);
+    const [showRegisterForm, setShowRegisterForm] = useState(false);
 
     return <>
 
-        <HomePageContext.Provider value={{showLoginForm, setShowLoginForm}}>
+        <HomePageContext.Provider value={{showLoginForm, setShowLoginForm, showRegisterForm, setShowRegisterForm}}>
             <div className={styles.wrapper}>
                 <main>
                     <Logo/>
                     <Content/>
+                    {showRegisterForm && <RegisterForm/>}
                     {showLoginForm && <LoginForm/>}
                 </main>
 
