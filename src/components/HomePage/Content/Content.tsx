@@ -1,7 +1,12 @@
+import { useContext } from 'react';
+import { HomePageContext } from '../../Common/Contexts/Contexts';
 import { MainBtn } from '../../Common/MainBtn/MainBtn';
 import styles from './Content.module.scss';
 
 export const Content = () => {
+
+    const {setShowLoginForm} = useContext(HomePageContext)!;
+
     return <>
         <div className={styles.content}>
             <h1>Śledź swoje pozycje i zwiększaj skuteczność!</h1>
@@ -12,7 +17,7 @@ export const Content = () => {
             
 
             <section className={styles.mainBtns}>
-                <MainBtn text='ZALOGUJ' dark/>
+                <MainBtn text='ZALOGUJ' dark onClick={()=>setShowLoginForm(true)}/>
                 <MainBtn text='ZAREJESTRUJ'/>
             </section>
 
