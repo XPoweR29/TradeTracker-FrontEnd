@@ -1,12 +1,15 @@
 import styles from './LoginForm.module.scss';
-
 import {HiOutlineLockClosed} from 'react-icons/hi';
 import {FiMail} from 'react-icons/fi';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../../Common/Contexts/AppContext';
 
 export const LoginForm = () => {
     
     const [user, setUser] = useState({email: '', pwd: ''});
+    const {setIsAuthenticated, setUserData} = useContext(AppContext)!;
+    const navigate = useNavigate();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUser(user => ({
@@ -15,9 +18,33 @@ export const LoginForm = () => {
         }));
     }
 
-    const sendForm = (e: React.FormEvent) => {
+    const sendForm = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log(user);
+
+        try {
+            const rawRes = await fetch(`http://localhost:3001/user/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            });
+            const res = await rawRes.json();
+             
+            if(!rawRes.ok) {
+                throw new Error(res.message);
+            };
+            
+            setIsAuthenticated(true);
+            setUserData(res);
+            navigate('/dashboard', {replace: true});
+        } 
+        
+        catch (err: any) {
+            console.error(err)
+            alert(err.message);
+            //>> Tutaj odpowiedni komunikat dla użytkownika. Najlepiej TOAST
+        }
     }
 
     return <>

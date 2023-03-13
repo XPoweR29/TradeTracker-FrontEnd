@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { HomePageContext } from '../../Common/Contexts/Contexts';
+import { HomePageContext } from '../../Common/Contexts/HomePageContext';
 import { MainBtn } from '../../Common/MainBtn/MainBtn';
 import styles from './Content.module.scss';
 
