@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { Route, Routes } from "react-router-dom"
 import { AppContext } from "./components/Common/Contexts/AppContext"
-import { PrivateRoute } from "./components/Common/PrivateRoute/PrivateRoute"
 import { Dashboard } from "./views/Dashboard/Dashboard"
 import { HomePage } from "./views/HomePage/HomePageView"
 import { NotFound } from "./views/NotFound/NotFound"
