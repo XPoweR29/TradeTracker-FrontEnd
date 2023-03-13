@@ -1,11 +1,15 @@
 import styles from './HomePageView.module.scss';
-import { Content } from '../components/HomePage/Content/Content';
-import { Logo } from '../components/HomePage/Logo/Logo';
-import { FeatureList } from '../components/HomePage/FeatureList/FeatureList';
-import { LoginForm } from '../components/HomePage/LoginForm/LoginForm';
-import { HomePageContext } from '../components/Common/Contexts/Contexts';
+import { Content } from '../../components/HomePage/Content/Content';
+import { Logo } from '../../components/HomePage/Logo/Logo';
+import { FeatureList } from '../../components/HomePage/FeatureList/FeatureList';
+import { LoginForm } from '../../components/HomePage/LoginForm/LoginForm';
+import { HomePageContext } from '../../components/Common/Contexts/HomePageContext';
 import { useState } from 'react';
-import { RegisterForm } from '../components/HomePage/RegisterForm/RegisterForm';
+import { RegisterForm } from '../../components/HomePage/RegisterForm/RegisterForm';
+
+interface Props {
+    isAuth: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 export const HomePage = () => {
     const [showLoginForm, setShowLoginForm] = useState(false);
