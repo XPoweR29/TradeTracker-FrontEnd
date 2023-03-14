@@ -43,7 +43,8 @@ export const LoginForm = () => {
         catch (err: any) {
             console.error(err)
             alert(err.message);
-            //>> Tutaj odpowiedni komunikat dla użytkownika. Najlepiej TOAST
+            // IMPROVE: wstawić TOAST z komunikatem 
+            
         }
     }
 

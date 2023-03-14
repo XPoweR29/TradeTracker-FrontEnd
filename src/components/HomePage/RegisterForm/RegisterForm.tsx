@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { FaUserAlt } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
 import { HiOutlineLockClosed } from 'react-icons/hi';
@@ -13,6 +13,8 @@ export const RegisterForm = () => {
         confirmPwd: '',
     });
 
+    const formRef = useRef<HTMLFormElement>(null);
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNewUser(user => ({
             ...newUser, 
@@ -20,15 +22,38 @@ export const RegisterForm = () => {
         }));
     }
 
-    const sendForm = (e: React.FormEvent) => {
+    const sendForm = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log(newUser);
-    }
+
+        try {
+            const rawRes = await fetch('http://localhost:3001/user/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newUser),
+            });
+            const res = await rawRes.json();
+
+            if(!rawRes.ok) {
+                throw new Error(res.message);
+            };
+
+            alert(res.message);
+            formRef.current?.reset();
+        }
+        catch(err: any) {
+            console.error(err.message)
+            alert(err.message);
+            // IMPROVE: wstawić TOAST z komunikatem 
+        }
+
+        }
 
     return <>
         <div id='form' className={styles.wrapper}>
             <h2 className={styles.title}>Zarejestruj</h2>
-            <form onSubmit={sendForm}>
+            <form ref={formRef} onSubmit={sendForm}>
                 <div className={styles.inputbox}>
                     <span className={styles.icon}>{<FaUserAlt/>}</span>
                     <input 
