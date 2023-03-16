@@ -1,0 +1,45 @@
+@import '../../../styles/variables.scss';
+
+
+.wrapper {
+    background-color: transparent;
+    display: flex;
+    height: 3em;
+    margin-top: 10px;
+
+    & .positionInfo {
+        flex-grow: 1;
+        display: flex;
+
+        & span {
+            margin: auto;
+            width: 20%;
+            text-align: center;
+        }
+    }
+
+    & .positionTools {
+        width: 30%;
+        margin-left: auto;
+        display: flex;
+
+        & button {
+            margin: auto;
+            width: 30px;
+            background-color: transparent;
+            border: none;
+            font-size: 1.3em;
+            cursor: pointer;
+            transition: .1s;
+            transform: scale(1);
+
+            &:hover {
+                transform: scale(1.4);
+            }
+
+            &:nth-child(3):hover {
+                color: rgba(255, 0, 0, 0.514);
+            }
+        }
+    }
+}

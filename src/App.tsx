@@ -1,10 +1,9 @@
 import { useState } from "react"
-import { Route, Routes } from "react-router-dom"
+import { Navigate, Route, Routes } from "react-router-dom"
 import { AppContext } from "./components/Common/Contexts/AppContext"
 import { Dashboard } from "./views/Dashboard/Dashboard"
 import { HomePage } from "./views/HomePage/HomePageView"
-import { NotFound } from "./views/NotFound/NotFound"
-import {User} from 'types';
+import {Position, User} from 'types';
 
 const user: User = {
   id: '',
@@ -15,11 +14,13 @@ const user: User = {
 
 export const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userData, setUserData] = useState(user);
+  const [userData, setUserData] = useState<User>(user);
+  const [positions, setPositions] = useState<Position[]>([]);
 
   const contextValues = {
     isAuthenticated, setIsAuthenticated,
     userData, setUserData,
+    positions, setPositions,
   };
 
 
@@ -27,9 +28,9 @@ export const App = () => {
     <AppContext.Provider value={contextValues}>
       <Routes>
         <Route path="/" element={<HomePage/>}/>
-        <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route path="/dashboard/*" element={<Dashboard/>}/>
         
-        <Route path="*" element={<NotFound/>}/>
+        <Route path="*" element={<Navigate to={'/'}/>}/>
     </Routes>
     </AppContext.Provider>
   )

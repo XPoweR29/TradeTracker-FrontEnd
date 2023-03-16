@@ -4,6 +4,7 @@ import { App } from './App';
 import './index.scss';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
+import { Dashboard } from './views/Dashboard/Dashboard';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
