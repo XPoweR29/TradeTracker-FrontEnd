@@ -37,7 +37,7 @@ export const LoginForm = () => {
             
             setIsAuthenticated(true);
             setUserData(res);
-            navigate('/dashboard', {replace: true});
+            navigate('/dashboard/transactions', {replace: true});
         } 
         
         catch (err: any) {
