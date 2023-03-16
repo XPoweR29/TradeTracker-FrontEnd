@@ -1,0 +1,27 @@
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 100vh;
+
+    & header {
+        width: 85%;
+        height: 15%;
+    }
+
+    & aside {
+        order: -1;
+        width: 15%;
+        height: 100vh;
+    }
+
+    & main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: lightgray;
+        padding: 5em;
+        flex-grow: 1;
+    }
+}
+    
