@@ -13,7 +13,7 @@ const user: User = {
 };
 
 export const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false); //FIXME: pamiętaj żeby zmienićp otem na false
   const [userData, setUserData] = useState<User>(user);
   const [positions, setPositions] = useState<Position[]>([]);
 

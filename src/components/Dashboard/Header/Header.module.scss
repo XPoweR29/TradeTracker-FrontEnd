@@ -36,11 +36,13 @@
             }
 
             & button {
-                background-color: transparent;
+                margin: 0;
+                padding: 0;
+                width: 50px;
                 border: none;
-                margin-right: 5px;
-                width: 35px;
+                background-color: transparent;
                 cursor: pointer;
+
             }
         }
     }
