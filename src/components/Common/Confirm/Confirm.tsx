@@ -1,4 +1,4 @@
-import styles from './Confirm.module.scss';
+import style from './Confirm.module.scss';
 
 interface Props {
     message: string;
@@ -8,12 +8,14 @@ interface Props {
 
 export const Confirm = (props: Props) => {
     return(
-        <div className={styles.wrapper}>
-            <div className={styles.box}>
-                <h1 className={styles.title}>{props.message}</h1>
+        <div className={style.wrapper}>
+            <div className={style.box}>
+                <h1 className={style.title}>{props.message}</h1>
 
-                <button className={styles.confirm} onClick={()=>props.onConfirm()}>TAK</button>
-                <button className={styles.cancel} onClick={()=>props.showConfirm(false)}>NIE</button>
+                <div className={style.btnSection}>
+                    <button className={style.confirm} onClick={()=>props.onConfirm()}>TAK</button>
+                    <button className={style.cancel} onClick={()=>props.showConfirm(false)}>NIE</button>
+                </div>
             </div>
         </div>
     );
