@@ -1,0 +1,88 @@
+@import '../../../styles/variables.scss';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $dashboard-main-dark ;
+    height: 100%;
+
+    & .logo {
+        color: $logo-color-primary;
+        font-size: 1.5em;
+        margin: 2em auto;
+        letter-spacing: 5px;
+
+        & strong {
+            color: $logo-color-secondary;
+        }   
+    }
+
+    & .mainSection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        padding: 2em;
+        margin-top: 10%;
+
+        & a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 7% auto;
+            padding: 10px;
+            font-size: 1.3em;
+            text-decoration: none;
+            color: $dashboard-main-gray;
+            transition: .2s;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.1);
+                border-radius: 50px;
+                color: white;
+            }
+
+            &.active {
+                color: white;
+                background-color: rgba(0, 0, 0, 0.3);
+                padding: 10px;
+                border-radius: 50px;
+            }
+
+            & svg {
+                margin-right: 7%;
+            }
+
+            & span {
+                width: 70%;
+            }
+        }
+    }
+
+
+    & .minorSection {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        align-items: start;
+        justify-content: end;
+        width: 100%;
+        padding: 2em;
+        margin-top: 10%;
+
+        & a {
+            margin: 10px;
+            font-size: 1.1em;
+            color: $dashboard-main-gray;
+            cursor: pointer;
+            transition: .1s;
+
+            &:hover {
+                color: white;
+            }
+        }
+    }
+}

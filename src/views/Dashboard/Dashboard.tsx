@@ -1,17 +1,50 @@
-import { useContext } from 'react';
-import { Navigate} from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { Navigate, Route, Routes} from 'react-router-dom';
+import { Header } from '../../components/Dashboard/Header/Header';
+import { Transactions } from '../../components/Dashboard/Transactions/Transactions';
+import { Sidebar } from '../../components/Dashboard/Sidebar/Sidebar';
+import { Statistics } from '../../components/Dashboard/Statisctics/Statisctics';
+import { Settings } from '../../components/Dashboard/Settings/Settings';
 import { AppContext } from '../../components/Common/Contexts/AppContext';
 import styles from './Dashboard.module.scss';
 
+
 export const Dashboard = () => {
-    const {userData: user, isAuthenticated, setIsAuthenticated} = useContext(AppContext)!;
+    
+    const [headerTitle, setHeaderTitle] = useState(''); 
+    const {userData: user, isAuthenticated, setPositions, positions} = useContext(AppContext)!;
+
+    const getPositionsList = async() => {
+        const rawRes = await fetch(`http://localhost:3001/positions/${user.id}`);
+        const res = await rawRes.json();
+
+        if(!rawRes.ok) throw new Error(res.message);
+        setPositions(res);
+
+        console.log('refresh działa');
+    }
+
+    useEffect(() => { 
+        getPositionsList();
+    }, []);
+
 
     if(isAuthenticated){
-        return <>
-            <h1>Witaj na swoim koncie {user.username}</h1>
-            <br />
-            <button onClick={()=>setIsAuthenticated(false)}>Wyloguj</button>
-        </>
+        return(
+            <div className={styles.wrapper}>
+                
+                <header><Header title={headerTitle} username={user.username}/></header>
+                <aside><Sidebar setTitle={setHeaderTitle}/></aside>
+                <main>
+                    <Routes>
+                        <Route path='/transactions' element={<Transactions refreshList={getPositionsList}/>}/>
+                        <Route path='/stats' element={<Statistics/>}/>
+                        <Route path='/settings' element={<Settings/>}/>
+                        <Route path='/*' element={<Navigate to='/dashboard/transactions'/>}/>
+                    </Routes>
+                </main>
+            </div>
+        )
     }
 
     else {

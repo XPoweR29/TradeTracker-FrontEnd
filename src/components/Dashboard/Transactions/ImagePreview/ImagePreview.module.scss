@@ -1,0 +1,57 @@
+@import '../../../../styles/variables';
+
+.previewWrapper {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+
+    & .image {
+        height: 80%;
+        width: 80%;
+        border: 2px solid $logo-color-primary;
+    }
+
+    & button {
+        font-size: 5em;
+        border: none;
+        background-color: transparent;
+        color: white;
+        margin: 20px;
+        cursor: pointer;
+
+        &.close {
+            position: absolute;
+            right: 4%;
+            top: 3%;
+            margin: 0;
+            font-size: 5em;
+            background: transparent;
+            border: none;
+            color: rgb(255, 255, 255);
+            transform: scale(1);
+            cursor: pointer;
+            transition: .1s;
+
+            &:hover {
+                transform: scale(1.2);
+                color: rgba(255, 0, 0, 0.5);
+            }
+        }
+    }
+
+    & .amount {
+        position: absolute;
+        bottom: 2%;
+        color: white;
+        font-size: 2em;
+
+    }
+}
