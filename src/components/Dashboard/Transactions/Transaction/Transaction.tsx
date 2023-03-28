@@ -1,10 +1,11 @@
 import styles from './Transaction.module.scss';
 
+import { CurrUrls, TransactionContext } from '../../../Common/Contexts/TransactionContext';
 import {AiFillInfoCircle, AiTwotoneEdit, AiOutlineCheck} from 'react-icons/ai';
 import {FaTrashAlt} from 'react-icons/fa';
 import {BsFlag, BsFlagFill} from 'react-icons/bs';
 import { Position } from 'types';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Confirm } from '../../../Common/Confirm/Confirm';
 import { Details } from '../Details/Details';
 
@@ -15,11 +16,16 @@ interface Props {
 }
 
 export const Transaction = (props: Props) => {
+    const refresh = props.refreshList;
     const [position, setPosition] = useState(props.posData);
     const [showConfirm, setShowConfirm] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [isFlagChecked, setIsFlagChecked] = useState(position.flag);
+    const [currentUrls, setCurrentUrls] = useState<CurrUrls>({
+        before: JSON.parse(position.imgUrlBefore!),
+        after: JSON.parse(position.imgUrlAfter!),
+    });
 
     const changeFlag = async() => {
         const newFlag = !isFlagChecked ? 1 : 0;
@@ -63,7 +69,6 @@ export const Transaction = (props: Props) => {
         setIsEditing(!isEditing);
 
         if(isEditing){
-            console.log('UWAGA - wysyłam fetcha!');
             await fetch(`http://localhost:3001/positions/${position.id}`, {
                 method: 'PATCH',
                 headers: {'Content-Type': 'application/json'},
@@ -73,8 +78,14 @@ export const Transaction = (props: Props) => {
         }
     }
 
-    return (
+    const contextValues = {
+        position, setPosition, 
+        currentUrls, setCurrentUrls,
+        refresh,
+    };
 
+    return (
+        <TransactionContext.Provider value={contextValues}>
         <div className={styles.wrapper}>
             <section className={styles.positionInfo}>
                 <span className={styles.lp}>{props.index}</span>
@@ -92,7 +103,7 @@ export const Transaction = (props: Props) => {
                         title='Wprowadź wartość BUY lub SELL'
                         onChange={handleChange}
                         />
-                    <span className={styles.result}>{position.result ?? '- - -'}</span>
+                    <span className={styles.result}>{position.result !== "" ? position.result : '- - -'}</span>
                     <input className={styles.date} 
                         type='date' 
                         value={position.date} 
@@ -105,7 +116,7 @@ export const Transaction = (props: Props) => {
                 <>
                     <span className={styles.market}>{position.market}</span>
                     <span className={styles.direction}>{position.direction}</span>
-                    <span className={styles.result}>{position.result ?? '- - -'}</span>
+                    <span className={styles.result}>{position.result !== "" ? position.result : '- - -'}</span>
                     <span className={styles.date}>{position.date}</span>
                     
                 </>
@@ -126,7 +137,9 @@ export const Transaction = (props: Props) => {
                 </button>
             </section>
 
-            {showDetails && <Details/>}
+            {showDetails && <Details
+                refreshList={props.refreshList} 
+                showDetails={setShowDetails}/>}
 
             {showConfirm && 
             <Confirm 
@@ -134,5 +147,6 @@ export const Transaction = (props: Props) => {
             onConfirm={remove} 
             showConfirm={setShowConfirm}/>}
         </div> 
+        </TransactionContext.Provider>
     )
 }

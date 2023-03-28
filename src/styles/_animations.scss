@@ -3,3 +3,27 @@
         color: transparent;
     }
 }
+
+@keyframes borderBlink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+@keyframes fadeIn {
+    0%{
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
+@keyframes slideDown {
+    0%{
+        top: -100%;
+    }
+    100% {
+        top: 0px;
+    }
+}

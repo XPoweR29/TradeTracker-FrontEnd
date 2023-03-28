@@ -20,6 +20,8 @@ export const Dashboard = () => {
 
         if(!rawRes.ok) throw new Error(res.message);
         setPositions(res);
+
+        console.log('refresh działa');
     }
 
     useEffect(() => { 

@@ -9,11 +9,13 @@ interface Props {
     refreshList: () => void;
 }
 
+
+
 export const AddingForm = (props: Props) => {
     const {showForm} = props;
     const {userData,} = useContext(AppContext)!;
     const [newPosition, setNewPosition] = useState({
-        date: '',
+        date: new Date().toLocaleDateString('en-CA'),
         direction: '',
         market: '',
     });
@@ -48,8 +50,6 @@ export const AddingForm = (props: Props) => {
         catch(err: any) {
             alert(err.message);
         }
-
-        
     } 
 
     return(
@@ -67,7 +67,13 @@ export const AddingForm = (props: Props) => {
                 </section>
                     
                 <label htmlFor="date">Data</label>
-                <input id='date' type="date" name='date' onChange={handleChange}/>
+                <input 
+                    id='date' 
+                    type="date" 
+                    name='date' 
+                    onChange={handleChange}
+                    value={newPosition.date}
+                    required/>
 
                 <label htmlFor="market">Walor</label>
                 <input id='market' type="text" name='market' onChange={handleChange}/>
