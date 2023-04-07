@@ -7,12 +7,17 @@ interface Props  {
 }
 
 export const Header = (props: Props) => {
+    const search = (e: React.FormEvent) => {
+        e.preventDefault();
+        console.log('searching...')
+    }
+
     return(
         <div className={styles.wrapper}>
             <h1 className={styles.title}>{props.title}</h1>
 
             <section className={styles.search}>
-                <form className={styles.searchBox}>
+                <form className={styles.searchBox} onSubmit={search}>
                     <input type="text" placeholder='Wyszukaj...' />
                     <button type='submit'><FiSearch/></button>
                 </form>
@@ -27,5 +32,3 @@ export const Header = (props: Props) => {
         </div>
     ) 
 }
-
-//IMPROVE: Rodzielic powyższy komponenta na mniejsze.

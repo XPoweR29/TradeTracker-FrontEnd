@@ -46,7 +46,7 @@
             }
 
             &.active {
-                color: white;
+                color: $logo-color-primary;
                 background-color: rgba(0, 0, 0, 0.3);
                 padding: 10px;
                 border-radius: 50px;
@@ -79,10 +79,44 @@
             color: $dashboard-main-gray;
             cursor: pointer;
             transition: .1s;
+            text-decoration: none;
 
             &:hover {
                 color: white;
             }
+
+            &.active {
+                color: whitesmoke;
+            }
         }
     }
+}
+
+@media only screen and (max-width: 1400px) {
+    .wrapper {
+    
+        & .logo {
+            font-size: 1.1em;
+        }
+    
+        & .mainSection {
+    
+            & a {
+                margin: 5% auto;
+                padding: 10px;
+                font-size: 0.95em;
+            }
+        }
+    
+    
+        & .minorSection {
+    
+            & a {
+                margin: 10px;
+                font-size: 0.95em;
+            }
+
+        }
+    }
+
 }

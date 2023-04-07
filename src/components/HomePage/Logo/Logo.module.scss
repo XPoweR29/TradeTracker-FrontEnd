@@ -10,3 +10,10 @@
         color: $logo-color-secondary;
     }
 }
+
+@media only screen and (max-width: 1400px) {
+    .logo {
+        margin: 1em;
+    }
+    
+}

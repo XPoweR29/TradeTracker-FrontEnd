@@ -16,32 +16,39 @@ export const Transactions = (props: Props) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [pageCount, setPageCount] = useState(0);
     const [itemsPerPage] = useState(5);
+    const [prevPositionCount, setPrevPositionCount] = useState(0);
 
     const pagesVisited = currentPage * itemsPerPage;
     
-
+    
     const validatePageNumber = (pageNumber: number) => {
         if (pageNumber < 0) {
             return 0;
         } 
         else if (pageNumber >= pageCount) {
             return pageCount - 1;
-        } 
+        }
         else {
             return pageNumber;
         }
     };
-
+    
     const changePage = ({selected}: {selected: number}) => {
       setCurrentPage(selected);
     };
 
     useEffect(() => {
-        if(positions && positions.length > 0) {
-            setPageCount(Math.ceil(positions.length / itemsPerPage));
-        }
+        if (positions && positions.length > 0) {
+        setPageCount(Math.ceil(positions.length / itemsPerPage));
 
-        setCurrentPage(validatePageNumber(pageCount - 1));   
+            if (prevPositionCount > positions.length) {
+                if(pagesVisited >= positions.length) {
+                    setCurrentPage(currentPage > 0 ? currentPage - 1 : 0);
+                }
+                // setCurrentPage(validatePageNumber(currentPage));
+            }
+            setPrevPositionCount(positions.length);
+        } 
     }, [positions]);
     
 

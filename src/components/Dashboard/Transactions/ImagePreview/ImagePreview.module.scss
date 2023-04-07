@@ -1,4 +1,5 @@
 @import '../../../../styles/variables';
+@import '../../../../styles/animations';
 
 .previewWrapper {
     position: fixed;
@@ -12,6 +13,8 @@
     align-items: center;
     background-color: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(3px);
+    animation: fadeIn 0.5s both;
+
 
     & .image {
         height: 80%;
@@ -54,4 +57,26 @@
         font-size: 2em;
 
     }
+}
+
+@media only screen and (max-width: 1400px) {
+    .previewWrapper {
+    
+        & button {
+            font-size: 4em;
+    
+            &.close {
+                right: 2%;
+                top: 2%;
+                margin: 0;
+                font-size: 5em;
+            }
+        }
+    
+        & .amount {
+            font-size: 1.5em;
+    
+        }
+    }
+    
 }

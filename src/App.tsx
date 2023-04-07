@@ -4,6 +4,7 @@ import { AppContext } from "./components/Common/Contexts/AppContext"
 import { Dashboard } from "./views/Dashboard/Dashboard"
 import { HomePage } from "./views/HomePage/HomePageView"
 import {Position, User} from 'types';
+import { ToastContainer } from "react-toastify"
 
 const user: User = {
   id: '',
@@ -26,6 +27,8 @@ export const App = () => {
 
   return (
     <AppContext.Provider value={contextValues}>
+      <ToastContainer/>
+
       <Routes>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/dashboard/*" element={<Dashboard/>}/>

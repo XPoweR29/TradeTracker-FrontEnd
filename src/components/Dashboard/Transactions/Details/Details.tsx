@@ -15,6 +15,7 @@ interface Props {
 export const Details = (props: Props) => {
     const {position, setPosition} = useContext(TransactionContext)!;
     const [selectedRadio, setSelectedRadio] = useState(position.result);
+    const [editing, setEditing]  = useState(false);
 
 
     const dataUpdate = async() => {
@@ -45,8 +46,8 @@ export const Details = (props: Props) => {
             <div className={style.detailsBox}>
                 <h1 className={style.title}>Szczegóły transakcji</h1>
 
-                <DetailsSection dataKind='before'/>
-                <DetailsSection dataKind='after'/>
+                <DetailsSection editingNow={setEditing} dataKind='before'/>
+                <DetailsSection editingNow={setEditing} dataKind='after'/>
 
                 <div className={style.result}>
                     <p>Wynik transakcji:</p>
@@ -87,7 +88,7 @@ export const Details = (props: Props) => {
                         value='' 
                         onChange={handleChange}
                         />
-                    <label className={style.erase} htmlFor="erase"><BsFillBackspaceFill size={25}/></label>
+                    <label className={style.erase} htmlFor="erase"><BsFillBackspaceFill/></label>
 
                 </div>
             </div> 

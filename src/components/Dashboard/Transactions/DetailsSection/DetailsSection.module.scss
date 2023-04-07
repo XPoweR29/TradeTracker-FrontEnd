@@ -91,6 +91,11 @@
                 text-align: right;
                 margin-right: 5%;
                 animation: blink 0.5s infinite;
+
+                &[type=number]::-webkit-inner-spin-button, &[type=number]::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
             } 
         }
              

@@ -56,7 +56,7 @@ export const RemoveImgPopup = (props: Props) => {
 
         props.showPopup(false);
     }
-    //TODO: Niby ok ale jak usunie się wszystko to jest lipa.
+    
     return (
         <div className={style.wrapper}>
             <div className={style.box}>
