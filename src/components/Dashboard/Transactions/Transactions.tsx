@@ -45,7 +45,7 @@ export const Transactions = (props: Props) => {
                 if(pagesVisited >= positions.length) {
                     setCurrentPage(currentPage > 0 ? currentPage - 1 : 0);
                 }
-                // setCurrentPage(validatePageNumber(currentPage));
+                setCurrentPage(validatePageNumber(currentPage));
             }
             setPrevPositionCount(positions.length);
         } 
@@ -86,5 +86,3 @@ export const Transactions = (props: Props) => {
         </div>
     ) 
 }
-
-//IMPROVE: Dodać nagłówek dla całej listy z tytuami poszczególnych kolumn
