@@ -33,3 +33,20 @@ button {
         transform: scale(1.1);
     }
 }
+
+@media only screen and (max-width: 1400px) {
+    button {
+    
+    &.primary {
+        font-size: 1em;
+        padding: 7px 15px;
+        margin:  0 10px;
+    }
+
+    &.dark {
+        font-size: 1em;
+        padding: 7px 15px;
+        margin: 0 10px;
+    }
+}
+}

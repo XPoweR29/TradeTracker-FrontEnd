@@ -1,5 +1,5 @@
 import style from './DetailsSection.module.scss';
-import {useContext, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 
 import {MdModeEditOutline} from 'react-icons/md';
 import {FaTrashAlt} from 'react-icons/fa';
@@ -13,6 +13,7 @@ import { RemoveImgPopup } from '../RemoveImgPopup/RemoveImgPopup';
 
 interface Props {
     dataKind: 'before' | 'after'
+    editingNow: (val:boolean) => void,
 }
 
 export const DetailsSection = (props: Props) => {
@@ -20,12 +21,12 @@ export const DetailsSection = (props: Props) => {
     const [addImg, setAddImg] = useState(false);
     const [removeImg, setRemoveImg] = useState(false);
     const [description, setDescription] = useState(true);
-    const [isEditing, setIsEditing] = useState(false);
     const [imgPreview, setImgPreview] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
     
     
     const before = props.dataKind === 'before' ? true : false;
-
+    
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const updated: Position = {
             ...position,
@@ -33,14 +34,15 @@ export const DetailsSection = (props: Props) => {
         } 
         setPosition(updated);
     }
-
+    
+    
     const showPreview = (e: React.MouseEvent) => {
         const img = e.target as HTMLImageElement
         img.src.length !== 0 ?setImgPreview(true) : setImgPreview(false);
     }
-
+    
     const srcArray = before ? currentUrls.before : currentUrls.after;
-
+    
     return (
         <section className={style.detailsWrapper}>
             <h2>
@@ -76,7 +78,7 @@ export const DetailsSection = (props: Props) => {
                 <>
                     <p>Cena: 
                         <input
-                            type="text"
+                            type="number"
                             name={before ? 'entryPrice' : 'closePrice'} 
                             value={before ? position.entryPrice : position.closePrice}
                             onChange={handleChange} 
@@ -85,7 +87,7 @@ export const DetailsSection = (props: Props) => {
 
                     <p>{before ? 'Wartość SL:' : 'Osiągnięte RR:'} 
                         <input 
-                            type="text"
+                            type={before ? 'string' : 'number'}
                             name={before ? 'slValue' : 'rr'}
                             value={before ? position.slValue : position.rr}
                             onChange={handleChange}

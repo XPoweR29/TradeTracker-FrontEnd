@@ -3,6 +3,7 @@ import {BsCheckLg} from 'react-icons/bs';
 import {IoCloseSharp} from 'react-icons/io5';
 import {useContext, useState} from 'react';
 import { TransactionContext } from '../../../../components/Common/Contexts/TransactionContext';
+import { toast } from 'react-toastify';
 
 interface Props {
     showPopup: (val: boolean) => void;
@@ -17,6 +18,21 @@ export const AddImgPopup = (props: Props) => {
     const sendForm = async(e: React.FormEvent) => {
         e.preventDefault();
         const before = props.when === 'before' ? true : false;
+        
+        const isTradingViewLink = /^https:\/\/www\.tradingview\.com\/x\/[\w/]+$/.test(imgLink);
+        if(!isTradingViewLink) {
+            toast.error('Podany link nie jest poprawny', {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+            return;
+        }
 
         await fetch(`http://localhost:3001/positions/${position.id}`, {
             method: 'PUT',
@@ -32,8 +48,6 @@ export const AddImgPopup = (props: Props) => {
         setCurrentUrls(updatedUrls);
 
         props.showPopup(false);
-
-        //FIXME: Poprwane wysyłanie danych i walidacja linku!
     }
 
 

@@ -7,17 +7,17 @@ import { HomePageContext } from '../../components/Common/Contexts/HomePageContex
 import { useState } from 'react';
 import { RegisterForm } from '../../components/HomePage/RegisterForm/RegisterForm';
 
-interface Props {
-    isAuth: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
 export const HomePage = () => {
     const [showLoginForm, setShowLoginForm] = useState(false);
     const [showRegisterForm, setShowRegisterForm] = useState(false);
+    const contextValues = {
+        showLoginForm, setShowLoginForm,
+        showRegisterForm, setShowRegisterForm,
+    }
 
     return <>
 
-        <HomePageContext.Provider value={{showLoginForm, setShowLoginForm, showRegisterForm, setShowRegisterForm}}>
+        <HomePageContext.Provider value={contextValues}>
             <div className={styles.wrapper}>
                 <main>
                     <Logo/>
@@ -32,6 +32,4 @@ export const HomePage = () => {
             </div>
         </HomePageContext.Provider>
     </>
-}
-
-//>> Pomyśl czy nie zorbić jeszcze komponentów głownych <Main> i <Footer>. Jak dokładnie wyglądała by struktura w folderze components?
+};

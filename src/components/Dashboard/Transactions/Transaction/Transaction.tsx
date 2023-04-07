@@ -103,7 +103,7 @@ export const Transaction = (props: Props) => {
                         title='Wprowadź wartość BUY lub SELL'
                         onChange={handleChange}
                         />
-                    <span className={styles.result}>{position.result !== "" ? position.result : '- - -'}</span>
+                    <span className={styles[position.result!]}>{position.result !== "" ? position.result : '- - -'}</span>
                     <input className={styles.date} 
                         type='date' 
                         value={position.date} 
@@ -116,7 +116,7 @@ export const Transaction = (props: Props) => {
                 <>
                     <span className={styles.market}>{position.market}</span>
                     <span className={styles.direction}>{position.direction}</span>
-                    <span className={styles.result}>{position.result !== "" ? position.result : '- - -'}</span>
+                    <span className={styles[position.result!]}>{position.result !== "" ? position.result : '- - -'}</span>
                     <span className={styles.date}>{position.date}</span>
                     
                 </>
@@ -126,7 +126,7 @@ export const Transaction = (props: Props) => {
 
             <section className={styles.positionTools}>
                 <button className={styles.details} onClick={()=>setShowDetails(true)}><AiFillInfoCircle/></button>
-                <button className={styles.edit} 
+                <button className={isEditing ? styles.edit: ''} 
                     onClick={()=>edit()}>
                     {isEditing ? <AiOutlineCheck/> : <AiTwotoneEdit/>}
                 </button>
@@ -147,6 +147,6 @@ export const Transaction = (props: Props) => {
             onConfirm={remove} 
             showConfirm={setShowConfirm}/>}
         </div> 
-        </TransactionContext.Provider>
+        </TransactionContext.Provider> 
     )
 }

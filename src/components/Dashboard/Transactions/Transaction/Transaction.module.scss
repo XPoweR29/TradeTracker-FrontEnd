@@ -3,7 +3,6 @@
 
 
 .wrapper {
-    background-color: transparent;
     display: flex;
     height: 3em;
     margin-top: 10px;
@@ -12,11 +11,25 @@
         flex-grow: 1;
         display: flex;
 
+        
         & span {
             margin: auto;
             width: 20%;
             text-align: center;
             text-transform: uppercase;
+            
+            &.zysk {
+                text-shadow: 0px 0px 20px rgb(0, 228, 0);
+                color: $logo-color-primary;
+            }
+            &.strata {
+                text-shadow: 0px 0px 20px rgb(207, 11, 11);
+                color: $cancel-red;
+            }
+            &.be {
+                text-shadow: 0px 0px 20px rgb(217, 241, 0);
+                color: rgba(246, 248, 229, 0.616);
+            }
         }
         
         & input {
@@ -29,6 +42,10 @@
             text-align: center;
             text-transform: uppercase;
             animation: blink 0.5s infinite;
+
+            &[type='date']::-webkit-calendar-picker-indicator {
+                filter: invert(1);
+            }
         }
     }
 
@@ -43,9 +60,15 @@
             background-color: transparent;
             border: none;
             font-size: 1.3em;
+            color: whitesmoke;
             cursor: pointer;
             transition: .1s;
             transform: scale(1);
+
+            &.edit {
+                color: $logo-color-primary;
+                transform: scale(1.4);
+            }
 
             &:hover {
                 transform: scale(1.4);
@@ -56,5 +79,30 @@
             }
         }
     }
+}
+
+@media only screen and (max-width: 1400px) {
+    .wrapper {
+        display: flex;
+        height: 2.9em;
+    
+        & .positionInfo {
+            flex-grow: 1;
+            display: flex;
+    
+            
+            & span {
+                font-size: 0.9em;
+            }
+        }
+    
+        & .positionTools {
+    
+            & button {
+                font-size: 1.2em;
+            }
+        }
+    }
+    
 }
 

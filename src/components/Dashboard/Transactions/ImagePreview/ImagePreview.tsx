@@ -18,12 +18,12 @@ export const ImagePreview = (props: Props) => {
         if(target.value === 'prev') {
             const newIndex = index === 0 ? props.images.length - 1 : index -1;
             setIndex(newIndex);
-            setCurrentPrev(props.images[index]);
+            setCurrentPrev(props.images[newIndex]);
         }
         else if(target.value === 'next')  {
             const newIndex = index === props.images.length - 1 ? 0 : index +1;
             setIndex(newIndex);
-            setCurrentPrev(props.images[index]);
+            setCurrentPrev(props.images[newIndex]);
 
         } 
 

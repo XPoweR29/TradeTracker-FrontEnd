@@ -4,6 +4,7 @@ import {FiMail} from 'react-icons/fi';
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../Common/Contexts/AppContext';
+import { toast } from 'react-toastify';
 
 export const LoginForm = () => {
     
@@ -42,8 +43,16 @@ export const LoginForm = () => {
         
         catch (err: any) {
             console.error(err)
-            alert(err.message);
-            // IMPROVE: wstawić TOAST z komunikatem 
+            toast.error(err.message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
             
         }
     }
@@ -77,6 +86,7 @@ export const LoginForm = () => {
                     />
                     <label htmlFor='pwd'>Hasło</label>
                 </div>
+
                 <button 
                 className={styles.confirmBtn}
                 type="submit"

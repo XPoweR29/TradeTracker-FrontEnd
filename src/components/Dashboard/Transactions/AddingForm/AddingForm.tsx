@@ -3,6 +3,7 @@ import {IoCloseSharp} from 'react-icons/io5';
 import {BsCheckLg} from 'react-icons/bs';
 import { useContext, useState } from 'react';
 import { AppContext } from '../../../Common/Contexts/AppContext';
+import { toast } from 'react-toastify';
 
 interface Props {
     showForm: (val: boolean) => void;
@@ -48,7 +49,16 @@ export const AddingForm = (props: Props) => {
         showForm(false);
         }
         catch(err: any) {
-            alert(err.message);
+            toast.error(err.message, {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
     } 
 
@@ -57,6 +67,7 @@ export const AddingForm = (props: Props) => {
             <form className={style.form} onSubmit={sendForm}>
                 <h2 className={style.title}>Dodaj pozycję</h2>
 
+                
                 <section className={style.directionSection}>
                     
                         <input id='buy' type="radio" name='direction' value='buy' onChange={handleChange}/>
@@ -66,17 +77,17 @@ export const AddingForm = (props: Props) => {
                         <label className={style.sell} htmlFor="sell">SELL</label>
                 </section>
                     
-                <label htmlFor="date">Data</label>
                 <input 
-                    id='date' 
                     type="date" 
                     name='date' 
                     onChange={handleChange}
                     value={newPosition.date}
                     required/>
+                <input type="text" name='market' onChange={handleChange} placeholder='WALOR'/>
 
-                <label htmlFor="market">Walor</label>
-                <input id='market' type="text" name='market' onChange={handleChange}/>
+                <input type="number" name='entryPrice' step='any' onChange={handleChange} placeholder='Cena wejścia'/>
+
+                <input type="text" name='slValue' onChange={handleChange} placeholder='Wartość SL'/>
 
                 <section className={style.btnSection}>
                     <button className={style.btn} type='submit'><BsCheckLg/></button>

@@ -12,3 +12,12 @@
         margin-top: auto;
     }
 }
+
+@media only screen and (max-width: 420px) {
+    
+    .wrapper {
+        & footer {
+            display: none;
+        }
+    }
+}

@@ -23,3 +23,55 @@
         margin-top: 2em;
     }
 }
+
+@media only screen and (max-width: 1400px) {
+    .content {
+        width: 35%;
+        margin: 4em 9em;
+    
+        & h1 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+    
+        & p {
+            font-size: 0.95em;
+            line-height: 1.5em;
+    
+        }
+    
+        & .mainBtns {
+            margin-top: 1.7em;
+        }
+    }
+    
+}
+
+@media only screen and (max-width: 420px){
+    .content {
+        width: 80%;
+        margin: 0;
+    
+        & h1 {
+            margin: 20px;
+            margin-top: 100px;
+            font-size: 1.6em;
+        }
+    
+        & p {
+            display: none;
+    
+        }
+    
+        & .mainBtns {
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            
+        }
+    }
+}

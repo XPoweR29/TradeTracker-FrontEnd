@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { FaUserAlt } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
 import { HiOutlineLockClosed } from 'react-icons/hi';
+import { toast } from 'react-toastify';
 import styles from './RegisterForm.module.scss';
 
 export const RegisterForm = () => {
@@ -39,13 +40,31 @@ export const RegisterForm = () => {
                 throw new Error(res.message);
             };
 
-            alert(res.message);
+            toast.success(res.message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+
             formRef.current?.reset();
         }
         catch(err: any) {
             console.error(err.message)
-            alert(err.message);
-            // IMPROVE: wstawić TOAST z komunikatem 
+            toast.error(err.message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
         }
 
         }
