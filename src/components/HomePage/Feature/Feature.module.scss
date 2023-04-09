@@ -1,0 +1,49 @@
+.feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    color:white;
+
+    & .icon {
+        font-size: 3.9em;
+        color: rgb(189, 189, 189);
+    }
+    
+    & .title {
+        letter-spacing: 3px;
+        text-shadow: 2px 2px 20px rgb(0, 0, 0);
+    }
+
+    .description {
+        text-align: center;
+        margin-top: 1em;
+        color: rgb(185, 185, 185);
+        text-shadow: 2px 2px 20px rgb(0, 0, 0);
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .feature {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 25%;
+        color:white;
+    
+        & .icon {
+            font-size: 3em;
+        }
+        
+        & .title {
+            font-size: 1em;
+            letter-spacing: 2px;
+        }
+    
+        .description {
+            margin-top: 0.8em;
+            font-size: 0.8em;
+        }
+    }
+    
+}

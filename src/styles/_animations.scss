@@ -1,0 +1,47 @@
+@keyframes blink {
+    50% {
+        color: transparent;
+    }
+}
+
+@keyframes borderBlink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+@keyframes fadeIn {
+    0%{
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
+@keyframes fadeOut {
+    0%{
+        opacity: 100%;
+    }
+    100% {
+        opacity: 0%;
+    }
+}
+
+@keyframes slideDown {
+    0%{
+        top: -100%;
+    }
+    100% {
+        top: 0px;
+    }
+}
+
+@keyframes rollOut {
+    0% {
+        max-height: 0px;
+    }
+    100% {
+        max-height: 1000px;
+    }
+}

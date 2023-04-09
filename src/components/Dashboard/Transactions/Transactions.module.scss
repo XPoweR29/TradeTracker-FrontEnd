@@ -1,0 +1,110 @@
+@import '../../../styles/variables';
+@import '../../../styles/animations';
+
+.wrapper {
+    position: relative;
+    background-color: $dashboard-main-dark;
+    border-radius: 50px;
+    padding: 2em;
+    height: 100%;
+    width: 90%;
+    animation: fadeIn .5s both;
+
+
+    & .addBtn {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        font-size: 1.1em;
+        padding: 10px 20px;
+        border-radius: 50px;
+        border: 2px solid $logo-color-primary;
+        margin: 20px 50px;
+        cursor: pointer;
+        background-color: whitesmoke;
+        color: rgb(0, 0, 0);
+        transform: scale(1);
+        transition: .2s;
+
+        &:hover {
+            transform: scale(1.07);
+        }
+
+        & svg {
+            margin-right: 5px;
+        }
+    }
+
+    & .positionsList {
+        margin: auto;
+        margin-top: 50px;
+        list-style: none;
+        color: whitesmoke;
+
+        & li {
+            margin: 10px 30px;
+            border-top: 1px solid rgba(110, 110, 110, 0.685);
+
+            &:last-child {
+                border-bottom: 1px solid rgba(110, 110, 110, 0.685);
+                padding-bottom: 10px;
+            }
+        }
+    }
+
+    & .pagination {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        list-style: none;
+        
+        & li {
+            margin: 10px;
+            cursor: pointer;
+            color: grey;
+            transform: scale(1);
+            transition: .1s;
+            
+            &:hover {
+                transform: scale(1.2);
+                
+            }
+        }
+
+        & .active {
+            color: whitesmoke;
+            transform: scale(1.2);
+        }
+
+        & .next, & .previous {
+            margin: 10px;
+        }
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .wrapper {
+        padding: 0;
+        height: 95%;
+        width: 95%;
+    
+        & .addBtn {
+            font-size: 0.9em;
+            padding: 7px 12px;
+            margin: 30px;
+        }
+    
+        & .positionsList {
+            margin-top: 20px;
+    
+            & li {
+                margin: 5px 30px;
+            }
+        }
+    }
+    
+}

@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react"
+import { Navigate, Route, Routes } from "react-router-dom"
+import { AppContext } from "./components/Common/Contexts/AppContext"
+import { Dashboard } from "./views/Dashboard/Dashboard"
+import { HomePage } from "./views/HomePage/HomePageView"
+import {Position, User} from 'types';
+import { ToastContainer } from "react-toastify"
 
-function App() {
+const user: User = {
+  id: '',
+  username: '',
+  email: '',
+  pwd: '',
+};
+
+export const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userData, setUserData] = useState<User>(user);
+  const [positions, setPositions] = useState<Position[]>([]);
+
+  const contextValues = {
+    isAuthenticated, setIsAuthenticated,
+    userData, setUserData,
+    positions, setPositions,
+  };
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <AppContext.Provider value={contextValues}>
+      <ToastContainer/>
 
-export default App;
+      <Routes>
+        <Route path="/" element={<HomePage/>}/>
+        <Route path="/dashboard/*" element={<Dashboard/>}/>
+        
+        <Route path="*" element={<Navigate to={'/'}/>}/>
+    </Routes>
+    </AppContext.Provider>
+  )
+}

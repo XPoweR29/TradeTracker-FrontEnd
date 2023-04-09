@@ -1,0 +1,19 @@
+@import '../../../styles/variables.scss';
+
+.logo {
+    color: $logo-color-primary;
+    font-size: 2em;
+    margin: 1.5em;
+    letter-spacing: 5px;
+
+    & strong {
+        color: $logo-color-secondary;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .logo {
+        margin: 1em;
+    }
+    
+}

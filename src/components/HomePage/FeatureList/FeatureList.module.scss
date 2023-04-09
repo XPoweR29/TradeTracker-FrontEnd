@@ -1,0 +1,22 @@
+.featureList {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(53, 0, 0, 0.37);
+    height: 25vh;
+    padding: 0 16em;
+    list-style: none;
+}
+
+@media only screen and (max-width: 1400px) {
+    .featureList {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgba(53, 0, 0, 0.37);
+        height: 25vh;
+        padding: 0 5em;
+        list-style: none;
+    }
+    
+}
