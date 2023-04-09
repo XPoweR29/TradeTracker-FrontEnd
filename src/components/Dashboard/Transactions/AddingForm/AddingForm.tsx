@@ -45,7 +45,11 @@ export const AddingForm = (props: Props) => {
         if(!rawRes.ok){
             throw new Error(res.message);
         }
-
+        
+        toast.success('Nowa pozycja została dodana', {
+            position: "bottom-center",
+            theme: "dark",
+        });
         showForm(false);
         }
         catch(err: any) {
