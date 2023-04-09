@@ -16,7 +16,7 @@ export const Effectivness = () => {
     };
     
     const sumRR = (positions ?? []).reduce((prev, {rr}) => {return prev + rr!}, 0);
-    const avgRR = ((sumRR / ((positions?.filter(pos => pos.rr !== 0))?.length ?? 0)).toFixed(1));
+    const avgRR = ((sumRR / ((positions?.filter(pos => pos.rr !==0 && pos.rr !==null))?.length ?? 0)).toFixed(1));
     const effectivness = Number(((posResults?.profits / (posResults?.losses+posResults?.profits))*100).toFixed(0));
 
 const data = {
