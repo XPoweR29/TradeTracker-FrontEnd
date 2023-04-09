@@ -84,6 +84,7 @@
 
             & input {
                 border: none;
+                width: 30%;
                 color: white;
                 background-color: transparent;
                 font-size: 1em;
@@ -91,6 +92,11 @@
                 text-align: right;
                 margin-right: 5%;
                 animation: blink 0.5s infinite;
+
+                &::placeholder {
+                    color: red;
+                    font-size: 1.3em;
+                }
 
                 &[type=number]::-webkit-inner-spin-button, &[type=number]::-webkit-outer-spin-button {
                     -webkit-appearance: none;

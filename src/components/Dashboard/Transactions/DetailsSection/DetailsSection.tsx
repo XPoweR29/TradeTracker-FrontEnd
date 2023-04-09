@@ -82,6 +82,7 @@ export const DetailsSection = (props: Props) => {
                             name={before ? 'entryPrice' : 'closePrice'} 
                             value={before ? position.entryPrice : position.closePrice}
                             onChange={handleChange} 
+                            placeholder='!'
                             />
                     </p>
 
@@ -91,6 +92,7 @@ export const DetailsSection = (props: Props) => {
                             name={before ? 'slValue' : 'rr'}
                             value={before ? position.slValue : position.rr}
                             onChange={handleChange}
+                            placeholder='!'
                             />
                     </p>
                 </>
