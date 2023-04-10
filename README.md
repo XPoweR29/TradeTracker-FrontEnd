@@ -33,12 +33,15 @@ Aplikacja jest ciągle rozwijana ale puki co działa w wersji 1.0.0. Z powodu na
 Dodatkowo zauważyłem problem ze stylami w przeglądarce Chrome a dokładniej z właściwością backdrop-filter: blur dla niektórych elementów. Jest to o tyle dziwne że problem ten nie występuje w FireFoxie. 
 W najbliższym czasie postaram się rozwiązać ten problem.
 
-Tak jak wspomniałem powyższe funkcjonalności będąstopniowo implementowane do projektu.
+Tak jak wspomniałem powyższe funkcjonalności będą stopniowo implementowane do projektu.
 
 ## Demo
 
 Demo aplikacji dostępne jest pod tym adresem:
 https://tradetracker.networkmanager.pl/
+
+Link do repozytorium BackEnd: 
+https://github.com/XPoweR29/TradeTracker-BackEnd.git
 
 ## Technologie
 
