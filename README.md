@@ -1,9 +1,10 @@
 
 # TradeTracker - FrontEnd
+### O projekcie: 
+
+Sprawdź, jakie decyzje handlowe przynoszą Ci największe zyski, dzięki aplikacji TradeTracker! To aplikacja która pomaga śledzić, notować i analizować Twoje poczynania na rynkach finansowych. Jest to świetne narzędzie do rozwijania i uskuteczniania swojej metody handlowej.
 
 ![DEMO](./demo.gif)
-
-Aplikacja która pomaga śledzić, notować i analizować swoje decyje handlowe. Jest to świetne narzędzie do rozwijania i uskuteczniania swojej metody handlowej.
 
 ## Funkcjonalności:
 - podstawowe informacje dotyczące transakcji
