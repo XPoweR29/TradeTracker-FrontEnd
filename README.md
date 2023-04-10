@@ -48,4 +48,5 @@ https://github.com/XPoweR29/TradeTracker-BackEnd.git
 
 - React
 - TypeScript 
+- Sass
 
