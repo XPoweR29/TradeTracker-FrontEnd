@@ -1,46 +1,47 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# TradeTracker - FrontEnd
 
-## Available Scripts
+![DEMO](./demo.gif)
 
-In the project directory, you can run:
+Aplikacja która pomaga śledzić, notować i analizować swoje decyje handlowe. Jest to świetne narzędzie do rozwijania i uskuteczniania swojej metody handlowej.
 
-### `npm start`
+## Funkcjonalności:
+- podstawowe informacje dotyczące transakcji
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- którki opis sytuacji w której podejmowana była decyzja handlowa
+- grafika wykresu z serwisu TradingView
+- zaznaczenie istotnych wniosków z transakcji za pomoca flagi
+- obliczeni skuteczności metodologii handlowej 
+- obliczanie średniego współczynnika zysk / strata
+- graficzne przedstawienie skuteczności na przestrzeni całego roku handlowego
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Informacja: 
+Aplikacja jest ciągle rozwijana ale puki co działa w wersji 1.0.0. Z powodu natłoku obowiązków zabrakło czasu na wdrożenie niektórych rozwiązań takich jak: 
 
-### `npm test`
+- autoryzacja i autentykacja uzytkownika za pomocą JWT
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- opcja przypomnienia hasła użytkownika
 
-### `npm run build`
+- obsługa wyszukiwarki / filtrów pozwalających na sortowanie pozycji wg. potrzeb.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Dodatkowe dane dotyczące statystyki.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- rozbudowanie sekcji USTAWIENIA o przełączanie motywu, zmianę języka, zmiana avatara
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- dodanie breakpointów odpowiadających za responsywność aplikacji oraz widok mobilny
 
-### `npm run eject`
+Dodatkowo zauważyłem problem ze stylami w przeglądarce Chrome a dokładniej z właściwością backdrop-filter: blur dla niektórych elementów. Jest to o tyle dziwne że problem ten nie występuje w FireFoxie. 
+W najbliższym czasie postaram się rozwiązać ten problem.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Tak jak wspomniałem powyższe funkcjonalności będąstopniowo implementowane do projektu.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Demo
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Demo aplikacji dostępne jest pod tym adresem:
+https://tradetracker.networkmanager.pl/
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Technologie
 
-## Learn More
+- React
+- TypeScript 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
