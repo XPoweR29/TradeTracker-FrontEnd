@@ -4,6 +4,7 @@ import {IoCloseSharp} from 'react-icons/io5';
 import {useContext, useState} from 'react';
 import { TransactionContext } from '../../../../components/Common/Contexts/TransactionContext';
 import { toast } from 'react-toastify';
+import { apiUrl } from '../../../../config/api';
 
 interface Props {
     showPopup: (val: boolean) => void;
@@ -34,7 +35,7 @@ export const AddImgPopup = (props: Props) => {
             return;
         }
 
-        await fetch(`http://localhost:3001/positions/${position.id}`, {
+        await fetch(`${apiUrl}/positions/${position.id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

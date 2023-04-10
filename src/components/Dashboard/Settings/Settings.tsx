@@ -3,6 +3,7 @@ import React, {useContext, useState} from 'react';
 import { AppContext } from '../../Common/Contexts/AppContext';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { apiUrl } from '../../../config/api';
 
 export const Settings = () => {
     const {userData, setUserData} = useContext(AppContext)!;
@@ -47,7 +48,7 @@ export const Settings = () => {
                 return;
             }
     
-            const fetchData = await fetch(`http://localhost:3001/user/update-${target.name}`, {
+            const fetchData = await fetch(`${apiUrl}/user/update-${target.name}`, {
                 method: 'PATCH',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(user),

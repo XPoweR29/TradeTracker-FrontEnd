@@ -8,6 +8,7 @@ import { Settings } from '../../components/Dashboard/Settings/Settings';
 import { Contact } from '../../components/Dashboard/Contact/Contact';
 import { AppContext } from '../../components/Common/Contexts/AppContext';
 import styles from './Dashboard.module.scss';
+import { apiUrl } from '../../config/api';
 
 export const Dashboard = () => {
     
@@ -15,7 +16,7 @@ export const Dashboard = () => {
     const {userData: user, isAuthenticated, setPositions} = useContext(AppContext)!;
 
     const getPositionsList = async() => {
-        const rawRes = await fetch(`http://localhost:3001/positions/${user.id}`);
+        const rawRes = await fetch(`${apiUrl}/positions/${user.id}`);
         const res = await rawRes.json();
 
         if(!rawRes.ok) throw new Error(res.message);

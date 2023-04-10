@@ -5,6 +5,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../Common/Contexts/AppContext';
 import { toast } from 'react-toastify';
+import { apiUrl } from '../../../config/api';
 
 export const LoginForm = () => {
     
@@ -23,7 +24,7 @@ export const LoginForm = () => {
         e.preventDefault();
 
         try {
-            const rawRes = await fetch(`http://localhost:3001/user/login`, {
+            const rawRes = await fetch(`${apiUrl}/user/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

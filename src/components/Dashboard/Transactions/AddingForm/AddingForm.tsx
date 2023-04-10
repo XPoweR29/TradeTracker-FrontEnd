@@ -4,6 +4,7 @@ import {BsCheckLg} from 'react-icons/bs';
 import { useContext, useState } from 'react';
 import { AppContext } from '../../../Common/Contexts/AppContext';
 import { toast } from 'react-toastify';
+import { apiUrl } from '../../../../config/api';
 
 interface Props {
     showForm: (val: boolean) => void;
@@ -31,7 +32,7 @@ export const AddingForm = (props: Props) => {
     const sendForm = async(e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const rawRes = await fetch('http://localhost:3001/positions', {
+            const rawRes = await fetch(`${apiUrl}/positions`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({
