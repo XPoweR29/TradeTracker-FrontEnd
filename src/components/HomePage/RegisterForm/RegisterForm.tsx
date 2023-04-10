@@ -3,6 +3,7 @@ import { FaUserAlt } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
 import { HiOutlineLockClosed } from 'react-icons/hi';
 import { toast } from 'react-toastify';
+import { apiUrl } from '../../../config/api';
 import styles from './RegisterForm.module.scss';
 
 export const RegisterForm = () => {
@@ -27,7 +28,7 @@ export const RegisterForm = () => {
         e.preventDefault();
 
         try {
-            const rawRes = await fetch('http://localhost:3001/user/register', {
+            const rawRes = await fetch(`${apiUrl}/user/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

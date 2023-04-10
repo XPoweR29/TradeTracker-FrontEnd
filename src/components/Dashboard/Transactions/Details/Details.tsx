@@ -5,6 +5,7 @@ import { DetailsSection } from '../DetailsSection/DetailsSection';
 import { useState, useContext } from 'react';
 import { TransactionContext } from '../../../Common/Contexts/TransactionContext';
 import { Position } from 'types';
+import { apiUrl } from '../../../../config/api';
 
 interface Props {
     showDetails: (val: boolean) => void;
@@ -19,7 +20,7 @@ export const Details = (props: Props) => {
 
 
     const dataUpdate = async() => {
-        await fetch(`http://localhost:3001/positions/${position.id}`, {
+        await fetch(`${apiUrl}/positions/${position.id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(position),

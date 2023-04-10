@@ -8,6 +8,7 @@ import { Position } from 'types';
 import { useState } from 'react';
 import { Confirm } from '../../../Common/Confirm/Confirm';
 import { Details } from '../Details/Details';
+import { apiUrl } from '../../../../config/api';
 
 interface Props {
     posData: Position;
@@ -30,7 +31,7 @@ export const Transaction = (props: Props) => {
     const changeFlag = async() => {
         const newFlag = !isFlagChecked ? 1 : 0;
         setIsFlagChecked(newFlag);
-        await fetch(`http://localhost:3001/positions/${position.id}`, {
+        await fetch(`${apiUrl}/positions/${position.id}`, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({flag: newFlag}),
@@ -41,7 +42,7 @@ export const Transaction = (props: Props) => {
 
     const remove = async() => {
         try {
-            const rawRes = await fetch(`http://localhost:3001/positions/${position.id}`,{
+            const rawRes = await fetch(`${apiUrl}/positions/${position.id}`,{
             method: 'DELETE',
             });
             const res = await rawRes.json();
@@ -69,7 +70,7 @@ export const Transaction = (props: Props) => {
         setIsEditing(!isEditing);
 
         if(isEditing){
-            await fetch(`http://localhost:3001/positions/${position.id}`, {
+            await fetch(`${apiUrl}/positions/${position.id}`, {
                 method: 'PATCH',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(position),

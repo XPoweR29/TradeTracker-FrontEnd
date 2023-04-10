@@ -3,6 +3,7 @@ import {useState, useContext} from 'react';
 import {IoCloseSharp} from 'react-icons/io5';
 import {BsCheckLg} from 'react-icons/bs';
 import { TransactionContext } from '../../../Common/Contexts/TransactionContext';
+import { apiUrl } from '../../../../config/api';
 
 
 
@@ -38,7 +39,7 @@ export const RemoveImgPopup = (props: Props) => {
     const confirmRemove = async () => {
 
         selectedImages.forEach(async (imgLink) => {
-            await fetch(`http://localhost:3001/positions/image/${position.id}`, {
+            await fetch(`${apiUrl}/positions/image/${position.id}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
