@@ -6,17 +6,16 @@ import { HomePage } from "./views/HomePage/HomePageView"
 import {Position, User} from 'types';
 import { ToastContainer } from "react-toastify"
 
-const user: User = {
+const user: Partial<User> = {
   id: '',
   username: '',
   email: '',
-  pwd: '',
 };
 
 export const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userData, setUserData] = useState<User>(user);
-  const [positions, setPositions] = useState<Position[]>([]);
+  const [userData, setUserData] = useState<Partial<User>>(user);
+  const [positions, setPositions] = useState<Position[] | null>(null);
 
   const contextValues = {
     isAuthenticated, setIsAuthenticated,

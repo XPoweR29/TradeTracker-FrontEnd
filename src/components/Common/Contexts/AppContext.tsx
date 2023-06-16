@@ -5,11 +5,11 @@ type AppContextType = {
     isAuthenticated: boolean;
     setIsAuthenticated: (val: boolean) => void;
 
-    userData: User;
+    userData: Partial<User>;
     setUserData: (val: User) => void;
 
-    positions: Position[]
-    setPositions: (val: Position[]) => void;
+    positions: Position[] | null
+    setPositions: (val: Position[] | null) => void;
 }
 
 

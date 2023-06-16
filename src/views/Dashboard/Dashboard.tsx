@@ -9,23 +9,26 @@ import { Contact } from '../../components/Dashboard/Contact/Contact';
 import { AppContext } from '../../components/Common/Contexts/AppContext';
 import styles from './Dashboard.module.scss';
 import { apiUrl } from '../../config/api';
+import { PaginationResponse } from 'types';
 
 export const Dashboard = () => {
     
     const [headerTitle, setHeaderTitle] = useState('TRANSAKCJE'); 
     const {userData: user, isAuthenticated, setPositions} = useContext(AppContext)!;
-
-    const getPositionsList = async() => {
-        const rawRes = await fetch(`${apiUrl}/positions/${user.id}`);
-        const res = await rawRes.json();
-
-        if(!rawRes.ok) throw new Error(res.message);
-        setPositions(res);
-    }
-
+    
     useEffect(() => { 
         getPositionsList();
     }, []);
+
+    const getPositionsList = async() => {
+            const rawRes = await fetch(`${apiUrl}/api/positions/1/asc`, {credentials: 'include'});
+            const res = await rawRes.json() as PaginationResponse & Record<'message', string>;
+        
+        if(!rawRes.ok) throw new Error(res.message);
+        
+        setPositions(res.positions); 
+    }
+            
 
 
     if(isAuthenticated){
@@ -33,7 +36,7 @@ export const Dashboard = () => {
             <div className={styles.wrapper}>
             
             
-                <header><Header title={headerTitle} username={user.username}/></header>
+                <header><Header title={headerTitle} username={user.username!}/></header>
                 <aside><Sidebar setTitle={setHeaderTitle}/></aside>
                 <main>
                     <Routes>
