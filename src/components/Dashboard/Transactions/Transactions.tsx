@@ -6,6 +6,7 @@ import { AppContext } from '../../Common/Contexts/AppContext';
 import { AddingForm } from './AddingForm/AddingForm';
 import { apiUrl } from '../../../config/api';
 import { PaginationResponse } from 'types';
+import { Loader } from '../../Common/Loader/Loader';
 
 interface Props {
     refreshList: () => void;
@@ -70,11 +71,11 @@ export const Transactions = (props: Props) => {
             </ul>
         </>
         :
-        // FIXME: ospowiedni spinner 
-        <div>Ładownie pozycji.....</div>
+        <Loader/>
         }
 
         {
+            // //FIXME: Ta lista stron ma się wyświetlać tylk owtedy gdy są jakieś pozycje!
         <ul className={styles.pageList}>
             <li data-type='prev' onClick={(e)=>switchPage(e)}><AiOutlineDoubleLeft/></li>
             {Array.from({ length: totalPage }, (_, index) => index + 1).map((page) => (
