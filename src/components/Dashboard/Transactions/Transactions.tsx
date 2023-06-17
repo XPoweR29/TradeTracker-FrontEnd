@@ -32,8 +32,8 @@ export const Transactions = (props: Props) => {
     const switchPage =(e: React.MouseEvent<HTMLLIElement, MouseEvent>, current?: number) => {
         const target = e.target as HTMLLIElement;
         const liType = target.closest("li")?.dataset.type;
-        //IMPROVE: Warto pomysleć jak czyścić pozycje dopiero wtedy kiedy zostaną zaciągnięte nowe. Wtedy unikniemy szarpania podczas przełączania stron. 
-        if (!liType) {
+
+        if (!liType && currentPage !== current) {
             setPositions(null);
             setCurrentPage(current!);
 
@@ -76,7 +76,7 @@ export const Transactions = (props: Props) => {
         }
 
         { positions &&
-        //FIXME: Jak się kliknie dwa razy na tą samą stronę to znikają pozycje!
+        
         <ul className={styles.pageList}>
             <li data-type='prev' onClick={(e)=>switchPage(e)}><AiOutlineDoubleLeft/></li>
             {Array.from({ length: totalPage }, (_, index) => index + 1).map((page) => (
