@@ -15,12 +15,11 @@ interface Props {
 export const Transactions = (props: Props) => {
     const {positions, setPositions} = useContext(AppContext)!;
     const [showAddingForm, setShowAddingForm] = useState(false);
-
-
     const [totalPage, setTotalPage] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {getPositions()}, [currentPage]);
+    useEffect(()=> {props.refreshList()}, []);
 
     const getPositions = async() => {
         const rawRes = await fetch(`${apiUrl}/api/positions/${currentPage}/`, {credentials: 'include'});
@@ -75,8 +74,8 @@ export const Transactions = (props: Props) => {
         <Loader/>
         }
 
-        { positions &&
-        
+        { (positions && positions.length > 0) &&
+
         <ul className={styles.pageList}>
             <li data-type='prev' onClick={(e)=>switchPage(e)}><AiOutlineDoubleLeft/></li>
             {Array.from({ length: totalPage }, (_, index) => index + 1).map((page) => (
@@ -93,9 +92,11 @@ export const Transactions = (props: Props) => {
         {showAddingForm && (
           <AddingForm
             showForm={setShowAddingForm}
-            refreshList={props.refreshList}
+            refreshList={getPositions}
           />
         )}
       </div>
     ); 
 }
+
+//TODO: Sprawdź czy dobrze działa ten loader teraz. !

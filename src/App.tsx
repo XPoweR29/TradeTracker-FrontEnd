@@ -15,7 +15,7 @@ const user: Partial<User> = {
 export const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userData, setUserData] = useState<Partial<User>>(user);
-  const [positions, setPositions] = useState<Position[] | null>(null);
+  const [positions, setPositions] = useState<Position[] | null>([]);
 
   const contextValues = {
     isAuthenticated, setIsAuthenticated,

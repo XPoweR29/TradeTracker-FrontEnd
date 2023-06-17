@@ -26,7 +26,7 @@ export const Dashboard = () => {
         
         if(!rawRes.ok) throw new Error(res.message);
         
-        setPositions(res.positions); 
+        setPositions(res.positions ?? []); 
     }
             
 

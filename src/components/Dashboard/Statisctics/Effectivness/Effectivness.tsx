@@ -41,10 +41,8 @@ const textCenter = {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(
-
         innerTxt, 
         chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y 
-            
     )
     }
 }
