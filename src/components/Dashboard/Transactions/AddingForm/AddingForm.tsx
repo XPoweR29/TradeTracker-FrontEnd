@@ -32,13 +32,11 @@ export const AddingForm = (props: Props) => {
     const sendForm = async(e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const rawRes = await fetch(`${apiUrl}/positions`, {
+            const rawRes = await fetch(`${apiUrl}/api/positions`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                ...newPosition, 
-                userId: userData.id
-            }),
+            body: JSON.stringify(newPosition),
+            credentials: 'include',
         });
         const res = await rawRes.json();
         props.refreshList();
