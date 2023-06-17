@@ -28,12 +28,13 @@ export const RegisterForm = () => {
         e.preventDefault();
 
         try {
-            const rawRes = await fetch(`${apiUrl}/user/register`, {
+            const rawRes = await fetch(`${apiUrl}/api/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(newUser),
+                credentials: 'include',
             });
             const res = await rawRes.json();
 

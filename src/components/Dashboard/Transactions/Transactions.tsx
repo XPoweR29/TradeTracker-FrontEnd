@@ -98,5 +98,3 @@ export const Transactions = (props: Props) => {
       </div>
     ); 
 }
-
-//TODO: Sprawdź czy dobrze działa ten loader teraz. !
