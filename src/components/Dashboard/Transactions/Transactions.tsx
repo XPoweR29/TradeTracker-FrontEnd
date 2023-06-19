@@ -7,13 +7,14 @@ import { AddingForm } from './AddingForm/AddingForm';
 import { apiUrl } from '../../../config/api';
 import { PaginationResponse } from 'types';
 import { Loader } from '../../Common/Loader/Loader';
+import { toast } from 'react-toastify';
 
 interface Props {
     refreshList: () => void;
 }
 
 export const Transactions = (props: Props) => {
-    const {positions, setPositions} = useContext(AppContext)!;
+    const {positions, setPositions, setIsAuthenticated} = useContext(AppContext)!;
     const [showAddingForm, setShowAddingForm] = useState(false);
     const [totalPage, setTotalPage] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
@@ -23,10 +24,17 @@ export const Transactions = (props: Props) => {
 
     const getPositions = async() => {
         const rawRes = await fetch(`${apiUrl}/api/positions/${currentPage}/`, {credentials: 'include'});
-        const data: PaginationResponse = await rawRes.json();
+        const data: PaginationResponse&Record<'message', string> = await rawRes.json();
+        if(!rawRes.ok){
+            toast.error(data.message, {
+                position: "top-right",
+                theme: "colored",
+            });
+            if(rawRes.status === 401 || rawRes.status === 403) setIsAuthenticated(false);  
+        };
         setTotalPage(Math.ceil(data.totalCount/5));
         setPositions(data.positions);
-    }
+    };
 
     const switchPage =(e: React.MouseEvent<HTMLLIElement, MouseEvent>, current?: number) => {
         const target = e.target as HTMLLIElement;

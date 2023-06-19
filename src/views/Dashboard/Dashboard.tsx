@@ -10,23 +10,28 @@ import { AppContext } from '../../components/Common/Contexts/AppContext';
 import styles from './Dashboard.module.scss';
 import { apiUrl } from '../../config/api';
 import { PaginationResponse } from 'types';
+import { toast } from 'react-toastify';
 
 export const Dashboard = () => {
     
     const [headerTitle, setHeaderTitle] = useState('TRANSAKCJE'); 
-    const {userData: user, isAuthenticated, setPositions} = useContext(AppContext)!;
+    const {userData: user, isAuthenticated, setIsAuthenticated, setPositions} = useContext(AppContext)!;
     
     useEffect(() => { 
         getPositionsList();
     }, []);
 
-    const getPositionsList = async() => {
-            const rawRes = await fetch(`${apiUrl}/api/positions/1/asc`, {credentials: 'include'});
-            const res = await rawRes.json() as PaginationResponse & Record<'message', string>;
-        
-        if(!rawRes.ok) throw new Error(res.message);
-        
-        setPositions(res.positions ?? []); 
+    const getPositionsList = async(): Promise<void> => {
+        const rawRes = await fetch(`${apiUrl}/api/positions/1/asc`, {credentials: 'include'});
+        const res = await rawRes.json() as PaginationResponse & Record<'message', string>;
+        if(!rawRes.ok){
+            toast.error(res.message, {
+                position: "top-right",
+                theme: "colored",
+            });
+            if(rawRes.status === 401 || rawRes.status === 403) setIsAuthenticated(false);  
+        } 
+        setPositions(res.positions ?? []);
     }
             
 
