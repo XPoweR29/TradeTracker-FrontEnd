@@ -1,11 +1,13 @@
 import style from './Details.module.scss';
+import { TransactionContext } from '../../../Common/Contexts/TransactionContext';
+import { AppContext } from '../../../Common/Contexts/AppContext';
 import {IoClose} from 'react-icons/io5';
 import {BsFillBackspaceFill} from 'react-icons/bs';
 import { DetailsSection } from '../DetailsSection/DetailsSection';
 import { useState, useContext } from 'react';
-import { TransactionContext } from '../../../Common/Contexts/TransactionContext';
 import { Position } from 'types';
 import { apiUrl } from '../../../../config/api';
+import { toast } from 'react-toastify';
 
 interface Props {
     showDetails: (val: boolean) => void;
@@ -14,21 +16,32 @@ interface Props {
 
 
 export const Details = (props: Props) => {
+    const {setIsAuthenticated} = useContext(AppContext)!;
     const {position, setPosition} = useContext(TransactionContext)!;
     const [selectedRadio, setSelectedRadio] = useState(position.result);
-    const [editing, setEditing]  = useState(false);
 
 
     const dataUpdate = async() => {
-        await fetch(`${apiUrl}/positions/${position.id}`, {
+
+        const rawRes = await fetch(`${apiUrl}/api/positions/${position.id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(position),
+            credentials: 'include'
         });
+        const res = await rawRes.json();
+            
+        if(!rawRes.ok){
+            toast.error(res.message, {
+                position: "top-right",
+                theme: "colored",
+            });
+            if(rawRes.status === 401 || rawRes.status === 403) setIsAuthenticated(false);  
+        };
 
         props.refreshList();
         props.showDetails(false);
-    }
+    };
 
             
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -47,8 +60,8 @@ export const Details = (props: Props) => {
             <div className={style.detailsBox}>
                 <h1 className={style.title}>Szczegóły transakcji</h1>
 
-                <DetailsSection editingNow={setEditing} dataKind='before'/>
-                <DetailsSection editingNow={setEditing} dataKind='after'/>
+                <DetailsSection dataKind='before'/>
+                <DetailsSection dataKind='after'/>
 
                 <div className={style.result}>
                     <p>Wynik transakcji:</p>
