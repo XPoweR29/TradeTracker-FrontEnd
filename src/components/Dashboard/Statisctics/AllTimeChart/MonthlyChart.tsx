@@ -35,7 +35,7 @@ export const MonthlyChart = () => {
             losses: monthlyPosition?.filter(pos => pos.result === 'strata').length
         };
         
-        const eff = Number(((posResults?.profits / (posResults?.losses+posResults?.profits))*100).toFixed(0));
+        const eff = Number(((posResults?.profits! / (posResults?.losses! + posResults?.profits!))*100).toFixed(0));
         
         return ({
             ...posResults,

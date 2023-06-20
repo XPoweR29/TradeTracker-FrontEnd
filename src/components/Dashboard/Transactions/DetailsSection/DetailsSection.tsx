@@ -13,7 +13,6 @@ import { RemoveImgPopup } from '../RemoveImgPopup/RemoveImgPopup';
 
 interface Props {
     dataKind: 'before' | 'after'
-    editingNow: (val:boolean) => void,
 }
 
 export const DetailsSection = (props: Props) => {

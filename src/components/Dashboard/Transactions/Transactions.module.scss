@@ -52,59 +52,55 @@
         }
     }
 
-    & .pagination {
+    & .pageList {
         position: absolute;
-        display: flex;
-        justify-content: center;
         bottom: 20px;
         left: 50%;
-        transform: translateX(-50%);
-        width: 60%;
+        display: flex;
+        width: 80%;
+        justify-content: center;
         list-style: none;
+        transform: translateX(-50%);
         
         & li {
-            margin: 10px;
+            margin: 0 7px;
             cursor: pointer;
-            color: grey;
+            transition: 0.1s;
+            color: rgba(255, 255, 255, 0.3);
             transform: scale(1);
-            transition: .1s;
-            
             &:hover {
+                color: white;
                 transform: scale(1.2);
-                
             }
-        }
 
-        & .active {
-            color: whitesmoke;
-            transform: scale(1.2);
-        }
-
-        & .next, & .previous {
-            margin: 10px;
+            &.activePage {
+                color: white;
+            }
         }
     }
 }
 
-@media only screen and (max-width: 1400px) {
-    .wrapper {
-        padding: 0;
-        height: 95%;
-        width: 95%;
+
+
+// @media only screen and (max-width: 1400px) {
+//     .wrapper {
+//         padding: 0;
+//         height: 95%;
+//         width: 95%;
     
-        & .addBtn {
-            font-size: 0.9em;
-            padding: 7px 12px;
-            margin: 30px;
-        }
+//         & .addBtn {
+//             font-size: 0.9em;
+//             padding: 7px 12px;
+//             margin: 30px;
+//         }
     
-        & .positionsList {
-            margin-top: 20px;
+//         & .positionsList {
+//             margin-top: 20px;
     
-            & li {
-                margin: 5px 30px;
-            }
-        }
-    }
+//             & li {
+//                 margin: 5px 30px;
+//             }
+//         }
+//     }
     
-}
+// }

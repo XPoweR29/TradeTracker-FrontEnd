@@ -24,19 +24,20 @@ export const LoginForm = () => {
         e.preventDefault();
 
         try {
-            const rawRes = await fetch(`${apiUrl}/user/login`, {
+            const rawRes = await fetch(`${apiUrl}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(user)
+                body: JSON.stringify(user),
+                credentials: 'include',
             });
             const res = await rawRes.json();
              
             if(!rawRes.ok) {
                 throw new Error(res.message);
             };
-            
+
             setIsAuthenticated(true);
             setUserData(res);
             navigate('/dashboard/transactions', {replace: true});
