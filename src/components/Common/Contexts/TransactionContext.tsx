@@ -13,7 +13,7 @@ type TransactionContextType = {
     currentUrls: CurrUrls;
     setCurrentUrls: (val: CurrUrls) => void; 
 
-    refresh: () => void;
+    refreshList: () => void;
 }
 
 

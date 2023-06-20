@@ -1,14 +1,15 @@
 import styles from './Transaction.module.scss';
-
+import { AppContext } from '../../../Common/Contexts/AppContext';
 import { CurrUrls, TransactionContext } from '../../../Common/Contexts/TransactionContext';
 import {AiFillInfoCircle, AiTwotoneEdit, AiOutlineCheck} from 'react-icons/ai';
 import {FaTrashAlt} from 'react-icons/fa';
 import {BsFlag, BsFlagFill} from 'react-icons/bs';
 import { Position } from 'types';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Confirm } from '../../../Common/Confirm/Confirm';
 import { Details } from '../Details/Details';
 import { apiUrl } from '../../../../config/api';
+import { authHandleFetch } from '../../../../utils/authHandleFetch';
 
 interface Props {
     posData: Position;
@@ -17,7 +18,8 @@ interface Props {
 }
 
 export const Transaction = (props: Props) => {
-    const refresh = props.refreshList;
+    const refreshList = props.refreshList;
+    const {setIsAuthenticated} = useContext(AppContext)!;
     const [position, setPosition] = useState(props.posData);
     const [showConfirm, setShowConfirm] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
@@ -31,32 +33,23 @@ export const Transaction = (props: Props) => {
     const changeFlag = async() => {
         const newFlag = !isFlagChecked ? 1 : 0;
         setIsFlagChecked(newFlag);
-        await fetch(`${apiUrl}/positions/${position.id}`, {
+        await authHandleFetch(`${apiUrl}/api/positions/${position.id}`, setIsAuthenticated, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({flag: newFlag}),
+            credentials: 'include',
         });
-        props.refreshList();
+        refreshList();
     }
 
 
     const remove = async() => {
-        try {
-            const rawRes = await fetch(`${apiUrl}/positions/${position.id}`,{
+        await authHandleFetch(`${apiUrl}/api/positions/${position.id}`, setIsAuthenticated ,{
             method: 'DELETE',
-            });
-            const res = await rawRes.json();
-
-            if(!rawRes.ok) {
-                throw new Error(res.message);
-            }
-
-            setShowConfirm(false);
-            props.refreshList();
-        }
-        catch(err: any) {
-            alert(err.message);
-        }
+            credentials: 'include',
+        });
+        setShowConfirm(false);
+        refreshList();
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,21 +61,21 @@ export const Transaction = (props: Props) => {
 
     const edit = async() => {
         setIsEditing(!isEditing);
-
         if(isEditing){
-            await fetch(`${apiUrl}/positions/${position.id}`, {
+            await authHandleFetch(`${apiUrl}/api/positions/${position.id}`, setIsAuthenticated, {
                 method: 'PATCH',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(position),
+                credentials: 'include'
             });
-            props.refreshList();
-        }
-    }
+            refreshList();
+        };
+    };
 
     const contextValues = {
         position, setPosition, 
         currentUrls, setCurrentUrls,
-        refresh,
+        refreshList,
     };
 
     return (
@@ -150,4 +143,4 @@ export const Transaction = (props: Props) => {
         </div> 
         </TransactionContext.Provider> 
     )
-}
+};
