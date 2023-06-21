@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import {Position, User} from 'types';
+import {Position, PositionStats, User} from 'types';
 
 type AppContextType = {
     isAuthenticated: boolean;
@@ -10,6 +10,9 @@ type AppContextType = {
 
     positions: Position[] | null
     setPositions: (val: Position[] | null) => void;
+
+    positionsStats: PositionStats[] | null
+    setPositionsStats: (val: PositionStats[]) => void;
 }
 
 

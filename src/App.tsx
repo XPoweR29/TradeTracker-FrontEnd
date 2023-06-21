@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom"
 import { AppContext } from "./components/Common/Contexts/AppContext"
 import { Dashboard } from "./views/Dashboard/Dashboard"
 import { HomePage } from "./views/HomePage/HomePageView"
-import {Position, User} from 'types';
+import {Position, PositionStats, User} from 'types';
 import { ToastContainer } from "react-toastify"
 
 const user: Partial<User> = {
@@ -16,11 +16,13 @@ export const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userData, setUserData] = useState<Partial<User>>(user);
   const [positions, setPositions] = useState<Position[] | null>([]);
+  const [positionsStats, setPositionsStats] = useState<PositionStats[] | null>([]);
 
   const contextValues = {
     isAuthenticated, setIsAuthenticated,
     userData, setUserData,
     positions, setPositions,
+    positionsStats, setPositionsStats
   };
 
 
