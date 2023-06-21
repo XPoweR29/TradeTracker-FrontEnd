@@ -1,5 +1,5 @@
 import styles from '../Statistics.module.scss';
-import {Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend, ChartData, ChartOptions} from 'chart.js';
+import {Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend, ChartData} from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { useContext, useState } from 'react';
 import { AppContext } from '../../../Common/Contexts/AppContext';
@@ -18,7 +18,7 @@ enum Month {
 }
 
 export const MonthlyChart = () => {
-    const {positions} = useContext(AppContext)!;
+    const {positionsStats: positions} = useContext(AppContext)!;
     const [selectedYear, setSeletcedYear] = useState((new Date().getFullYear()).toString());
 
     const years = positions?.map(pos => pos.date.substring(0, 4));
