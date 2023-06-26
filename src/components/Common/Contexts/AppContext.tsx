@@ -13,6 +13,9 @@ type AppContextType = {
 
     positionsStats: PositionStats[] | null
     setPositionsStats: (val: PositionStats[]) => void;
+
+    isFilters: boolean;
+    setIsFilters: (val: boolean) => void;
 }
 
 

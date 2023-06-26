@@ -15,8 +15,7 @@ export const HomePage = () => {
         showRegisterForm, setShowRegisterForm,
     }
 
-    return <>
-
+    return ( 
         <HomePageContext.Provider value={contextValues}>
             <div className={styles.wrapper}>
                 <main>
@@ -25,11 +24,11 @@ export const HomePage = () => {
                     {showRegisterForm && <RegisterForm/>}
                     {showLoginForm && <LoginForm/>}
                 </main>
-
+    
                 <footer>
                     <FeatureList/>
                 </footer>
             </div>
         </HomePageContext.Provider>
-    </>
+    )
 };

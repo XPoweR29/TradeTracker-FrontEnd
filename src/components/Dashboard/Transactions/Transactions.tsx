@@ -10,7 +10,7 @@ import {authHandleFetch } from '../../../utils/authHandleFetch';
 
 
 export const Transactions = () => {
-    const {positions, setPositions, setIsAuthenticated} = useContext(AppContext)!;
+    const {positions, setPositions, setIsAuthenticated, isFilters, setIsFilters} = useContext(AppContext)!;
     const [showAddingForm, setShowAddingForm] = useState(false);
     const [totalPage, setTotalPage] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
@@ -21,6 +21,7 @@ export const Transactions = () => {
         const data = await authHandleFetch(`${apiUrl}/api/positions/${currentPage}/`, setIsAuthenticated, {credentials: 'include'});
         setTotalPage(Math.ceil(data.totalCount/5));
         setPositions(data.positions);
+        setIsFilters(false);
     };
 
     const switchPage =(e: React.MouseEvent<HTMLLIElement, MouseEvent>, current?: number) => {
@@ -49,6 +50,8 @@ export const Transactions = () => {
           <AiOutlinePlus />
           Dodaj pozycję
         </button>
+
+        {isFilters && <a onClick={getPositions}>wyczyść filtry</a>}
         
         { positions ?
         <>
